@@ -1,0 +1,19 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Domains\Photos\DTOs;
+
+use Carbon\CarbonImmutable;
+
+final readonly class ReplacePhotoDTO
+{
+    public function __construct(
+        public int $photoId,
+        public ?float $gpsLatitude = null,
+        public ?float $gpsLongitude = null,
+        public ?float $gpsAccuracy = null,
+        public ?CarbonImmutable $capturedAt = null,
+        public ?string $notes = null,
+    ) {}
+}

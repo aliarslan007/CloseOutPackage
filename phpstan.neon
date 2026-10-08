@@ -1,0 +1,20 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+
+parameters:
+    parseModelCastsMethod: true
+
+    paths:
+        - app
+        - routes
+        - database/factories
+        - database/seeders
+
+    level: max
+
+    tmpDir: storage/framework/cache/phpstan
+
+    excludePaths:
+        analyseAndScan:
+            - database/migrations
+            - .phpstorm.meta.php (?)

@@ -1,0 +1,27 @@
+<?php
+
+declare(strict_types=1);
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::table('change_order_recipients', function (Blueprint $table): void {
+            // First time the customer opened the decision link / portal page.
+            // Written once and never changed (single-writer update), so it is
+            // the immutable "read" audit point in the activity history.
+            $table->timestamp('viewed_at')->nullable()->after('token_expires_at');
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::table('change_order_recipients', function (Blueprint $table): void {
+            $table->dropColumn('viewed_at');
+        });
+    }
+};
